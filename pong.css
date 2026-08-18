@@ -1,7 +1,76 @@
-.miniFooter{
+.gameCanvas{
+    margin-left: 50px;
+}
+
+.canvasContainer{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    text-align: justify;
+    gap:10px;
+}
+
+.scoresTable {
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+
+    background-color: #111;
+    border: 3px solid #fff;
+    border-radius: 10px;
+
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.scoresTable table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.scoresTable th {
+    padding: 10px;
+
+    color: #aaa;
+    font-size: 16px;
+    letter-spacing: 2px;
+
+    border-bottom: 2px solid #333;
+}
+
+.scoresTable td {
+    padding: 15px;
+
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+
+    width: 50%;
+    height: 25px;
+}
+
+.scoresTable td:first-child {
+    border-right: 2px solid #333;
+}
+
+.scoresTable th:first-child {
+    border-right: 2px solid #333;
+}
+
+#scoreTitle {
+    margin-left: 60px;
+    font-size: 20px;
+    background-color: white;
+    max-width: fit-content;
+    border-radius: 20%;
+    padding: 10px;
+}
+
+.sideItems{
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+body{
+    margin-top: 20px;
 }

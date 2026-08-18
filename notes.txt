@@ -1,0 +1,17 @@
+ x = left edge of the object
+ x + obj_width = right edge of the object
+ y = top edge of the object
+ y + obj_height = bottom edge of the object
+
+checking the sides of the canvas
+0 = left (starting point)
+canvas.width = right (edge)
+0 = top (starting point)
+canvas.height = bottom (edge)
+
+velocity *= -1 (reverses the speed of the object)
+(makes it run in reverse)
+
+x = 70
+size = 10
+total = 80
