@@ -1,5 +1,16 @@
+const socket = new WebSocket("ws://localhost:3000")
+
+socket.addEventListener("open", ()=>{
+    console.log("Connected to Server")
+});
+
+socket.addEventListener("close", ()=>{
+    console.log("Disconnected to Server")
+})
+
 import player from "/player.json" with {type : "json"}
 import ball from "/ball.json" with {type : "json"}
+import { type } from "node:os";
 
 // Difficulty Buttons Container
 const diffButtons = document.getElementById("diffButtons")
@@ -338,8 +349,65 @@ function gameLoop(timestamp){
     requestAnimationFrame(gameLoop)
 }
 
+// eventListeners
+window.addEventListener("keydown", function(event) {
 
-window.addEventListener("keydown" ,function(event){
+// PLAYER MOVEMENTS
+    if(event.key === "ArrowUp"){
+    // player.y -= 30 * gameSpeed;
+
+    // if(player.y < 0){
+    //     player.y = 0
+    // }
+    // // console.log(player.y)
+    // event.preventDefault()
+
+    socket.send(JSON.stringify({
+        type : "input",
+        key : "up",
+        pressed : true
+    }))
+    }
+    if(event.key === "ArrowDown"){
+
+    // player.y += 30 * gameSpeed + 2;
+
+    //  if(player.y < 0){
+    //     player.y = 0
+    // }
+
+    // if (player.y + player.height > canvas.height) {
+    //     player.y = canvas.height - player.height;
+    // }
+    // console.log(player.y)
+    // event.preventDefault()
+
+    socket.send(JSON.stringify({
+        type : "input",
+        key : "down",
+        pressed : true
+    }))
+
+    }
+
+// RELOAD BROWSER
+    if(event.shiftKey && event.key.toLowerCase() === 'r'){
+        location.reload()
+        }
+         if(event.code === "Space" && gameRunning){
+        isPaused = !isPaused;
+
+        if(isPaused){
+            gameState = GAME_STATES.PAUSED
+            pauseGame()
+
+        }else{
+            gameState = GAME_STATES.PLAYING
+            startGame()
+        }
+    }
+
+// START GAME
     if(event.key === "Enter" && !gameRunning){
         
         if(gameSpeed == 0){
@@ -356,57 +424,29 @@ window.addEventListener("keydown" ,function(event){
         // lastTime
         lastTime = performance.now()
     }
+
 })
 
-window.addEventListener("keydown", function(event){
-    if(event.code === "Space" && gameRunning){
-        isPaused = !isPaused;
+window.addEventListener("keyup", function(event){
 
-        if(isPaused){
-            gameState = GAME_STATES.PAUSED
-            pauseGame()
+    if(event.key === "ArrowUp"){
 
-        }else{
-            gameState = GAME_STATES.PLAYING
-            startGame()
-        }
-    }
-})
-
-// eventListeners
-window.addEventListener("keydown", function(event) {
-if(event.key === "ArrowDown"){
-    player.y += 30 * gameSpeed + 2;
-
-     if(player.y < 0){
-        player.y = 0
+        socket.send(JSON.stringify({
+            type : "input",
+            key : "up",
+            pressed : false
+        }));
     }
 
-    if (player.y + player.height > canvas.height) {
-        player.y = canvas.height - player.height;
+    if(event.key === "ArrowDown"){
+        
+        socket.send(JSON.stringify({
+            type : "input",
+            key : "up",
+            pressed : false
+        }))
     }
-    console.log(player.y)
-    event.preventDefault()
-}
-})
-
-window.addEventListener("keydown", function(event) {
-if(event.key === "ArrowUp"){
-    player.y -= 30 * gameSpeed;
-
-    if(player.y < 0){
-        player.y = 0
-    }
-    // console.log(player.y)
-    event.preventDefault()
-}
-})
-
-window.addEventListener("keydown", function(event) {
-    if(event.shiftKey && event.key.toLowerCase() === 'r'){
-        location.reload()
-    }
-})
+});
 
 // Load the js as soon as the screen loads
 requestAnimationFrame(gameLoop)
