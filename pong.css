@@ -1,3 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    margin: 10px;
+    padding: 10px;
+}
 .gameCanvas{
     margin-left: 50px;
 }
@@ -73,4 +82,32 @@
 
 body{
     margin-top: 20px;
+}
+
+.isSelected{
+    opacity: 100%;
+    border: solid 2px black;
+    background-color: yellow;
+    color: black;
+}
+
+.isInactive{
+    opacity: 60%;
+}
+
+.buttonsCont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 20%;
+}
+
+.buttonsCont button{
+    padding: 5px;
+    border-radius: 20%;
+}
+
+
+.botDiff{
+    margin-bottom: 10px;
 }

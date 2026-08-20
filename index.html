@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pong.css">
+    <title>Pong Game</title>
+</head>
+<body>
+    
+    <div class="canvasContainer">
+         <div class="sideItems">
+
+
+            <div class="scoresTable">
+                <h4 id="scoreTitle">Scores</h4>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Player Score</th>
+                                <th>Enemy Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="playerScore"></td>
+                                <td id="enemyScore"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+             <div>
+            <h4>Current Speed</h4>
+            <label for="playerSpeed">Input Speed</label>
+            <input id="playerSpeed" name="playerSpeed" type="range" min="1" max="5" step="1" value="3">
+            <p id="currentSpeed">Current Speed</p>
+            </div>
+
+            <div>
+            <h4>Keys</h4>
+            <span><p>Press Shift + R to reload</p></span>
+            </div>
+            <div>
+                <h4 class="botDiff">Select Bot Difficulty</h4>
+            <div class="buttonsCont" id="diffButtons">
+                <button id="easyButton">Easy</button>
+                <button id="mediumButton">Medium</button>
+                <button id="hardButton">Hard</button>
+            </div>
+
+            </div>
+            </div>
+
+            <div>
+            <canvas id="gameCanvas" class="gameCanvas"></canvas>
+            </div>
+
+    </div>
+
+    
+    <script type="module" src="scripts/pong.js"></script>
+</body>
+</html>
